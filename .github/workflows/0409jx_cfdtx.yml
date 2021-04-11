@@ -1,19 +1,19 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 0404jd_live_lottery_social
+name: 0406jxcfdtx
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '56 0,6,12 * * *'
+    - cron: '57 15,4 * * *'
   repository_dispatch:
-    types: jd_live_lottery_social
+    types: cfd
 jobs:
   build:
 
     runs-on: ubuntu-latest
-   
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,17 +34,11 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
-        with:
-         python-version: 3.7
-      - name: '定时运行'
+      - name: 'jxcfdtx'
         run: |
-              python3 wait24.py 0.1 0.1 29
-      - name: 'lottery'
-        run: |
-          curl https://raw.githubusercontent.com/hajiuhajiu/jdsign1112/master/jd_live_lottery_social.js -o jd_live_lottery_social.js
-          node jd_live_lottery_social.js
+          sleep 1
+          curl https://raw.githubusercontent.com/hajiuhajiu/jdsign1112/master/jx_cfdtx.js -o jx_cfdtx.js
+          node jx_cfdtx.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_USER_AGENT: ${{ secrets.JD_USER_AGENT }}
