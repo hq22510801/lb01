@@ -1,43 +1,55 @@
 
-## 特别声明: 
-本脚本取下列大佬 @NobyDa @lxk0301 @i-chenzhe @wuzhi01 
+## 特别声明及操作步骤: 
+本脚本取下列大佬 @NobyDa @lxk0301 @i-chenzhe @wuzhi03
 不保证完全可用， 部分脚本带助力部分可以自行修改， 加密脚本无法更改，请自行斟酌使用。
 尽量保留非加密版本
-
-1.目前宠汪汪无法助力
-2.后续增加脚本大部分为加密脚本,内置主力码,自行斟酌使用
-3.保护好cookie 使用github action的一定要存在secrets里
-4.不要fork 复制过去自己设置就好 
+1.新增脚本大部分为加密脚本,内置主力码,自行斟酌使用 
+2.保护好cookie 使用github action的一定要存在secrets里
 
  **您必须在下载后的24小时内从计算机或手机中完全删除以上内容.**  </br>
  ***您使用或者复制了本仓库或本人制作的任何脚本，则视为`已接受`此声明，请仔细阅读*** 
 ## 使用教程
 
 ### 一丶Github Action 使用教程
-手动复制方法：
-### 创建新仓库
+方法一：
 
-[点击创建自己的仓库](https://github.com/new)
+1.注册github账号 
 
-填入`Repository name`后点击最下方的`Create repository` 点下面Import a repository.
-然后在于Your old repository’s clone URL 填入 https://github.com/hajiuhajiu/jdsign1112 按提示完成复制后
-填写secrets 的cookie及其它参数即可。cookie可自行百度教程
-该方法需要自行定期替换或更新脚本，不会同步，但方法简单
+2.导入新仓库
+[点击导入仓库](https://github.com/new/import)
+
+Your old repository’s clone URL 填入 https://github.com/hajiuhajiu/jdsign1112 ，Your new repository details处填写导入后自己的repository名称，其它按默认，
+点击Begin import，等待导入完成。
+
+3.填写Cookie及互助码:导入完成后打开新导入的repository，在屏幕右上角找到
+Settings的按钮并点击，然后左侧找到secrets点击，点右侧的new repository secrets，输入secrets name: JD_COOKIE，value 里填写获得的cookie
+互助码自行填写在Secrets里，参考环境变量合集, 填写后先给自己填写的助力码助力，然后给脚本默认的助力码助力，可以自行将脚本内置的助力码去除， 或改变运行时间，自行手动助力完成后再运行脚本， 运行时间找.github\workflows目录下面对应的 yml后缀文件， 16：00对应北京时间零点。
+
+[获取京东Cookies教程](https://github.com/hajiuhajiu/code/blob/main/doc/GetJdCookie.md)
+
+环境变量合集（Secrets）配置[点击查看](https://github.com/hajiuhajiu/code/blob/main/doc/githubAction.md)
+
+前面完成之后，点击一下右上角的 star（fork 左边那个），让 workflow 运行一次，后续脚本会按workflow默认的时间每天自动运行，需要定期更新cookie。
+该方法需要手动替换或更新脚本，不会同步上游，但方法简单，可以自行选择需要运行的脚本，自己定义运行时间。
+
+
 
 自动同步教程：
 1. [按照这个教程进行 reposync](backup/reposync.md)
 2. 再在`Settings`-`Secrets`里面添加`JD_COOKIE`
-3. 多条 cookie 用`&`隔开，支持无数条 cookie
+3. 多条 cookie 用`&`隔开或者分行，支持无数条 cookie，cookie格式pt_key=xxx;pt_pin=;,需要保证两个都有，
 4. 前三步之后，点击一下右上角的 star（fork 左边那个），让 workflow 运行一次。
+5. 互助码自行填写在Secrets里， 填写后先给自己填写的助力码助力，然后给脚本默认的助力码助力，可以自行将脚本内置的助力码去除， 或改变运行时间，自行手动助力完成后再运行脚本，
+运行时间找.github\workflows目录下面对应的 yml后缀文件， 16：00对应北京时间零点。
 
 喜马拉雅极速版专属环境变量[点击查看](backup/xmly/xmly.md)
 lxk0301-环境变量合集（Secrets）配置[点击查看](https://gitee.com/lxk0301/jd_scripts/blob/master/githubAction.md)
 
-> 具体如何取 cookie可以运行getcookie脚本，按build里面运行提示扫码登陆，脚本会获得cookie，然后将脚本获得的cookie 放在secrets即可,运行后一定要删除运行记录,防盗!!!!!!
+>可以运行获取getcookie脚本的脚本，必须先配置微信推送后按github action：build里面运行提示用手机京东扫码登陆，脚本会自动获得cookie，然后推送到微信的消息，放在secrets即可。
 >  如何配置,可参考 > [获取京东Cookies教程](https://github.com/hajiuhajiu/jdsign1112/blob/master/backUp/GetJdCookie2.md)
 >
 > 
->   清单：  
+>   清单(仅供参考）：  
 > ##############短期活动############## 
 
 环球挑战赛 活动时：2021-02-02 至 2021-02-22  10 9,12,20,21 2-22 2 * node /scripts/jd_global.js >> /scripts/logs/jd_global  
