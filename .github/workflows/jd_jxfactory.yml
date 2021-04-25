@@ -6,7 +6,7 @@ name: jd_jxfactory京喜工厂
 on:
   workflow_dispatch:
   schedule:
-    - cron: '57 0-23/1 * * *'
+    - cron: '0 0-23/1 * * *'
   repository_dispatch:
     types: jd_jxfactory
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: hajiuhajiu/jdsign1112
+          repository: hajiuhajiu/jdsign1112b
           ref: master
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -36,7 +36,7 @@ jobs:
           npm install
       - name: 'jd_jxfactory'
         run: |
-          curl https://raw.githubusercontent.com/hajiuhajiu/jdsign1112/master/jd_jxfactory.js -o jd_jxfactory.js
+          
           node jd_jxfactory.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -52,4 +52,6 @@ jobs:
           DD_BOT_TOKEN: ${{ secrets.DD_BOT_TOKEN }}
           DD_BOT_SECRET: ${{ secrets.DD_BOT_SECRET }}
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
+          PUSH_PLUS_TOKEN: ${{ github.event.client_payload.PUSH_PLUS_TOKEN || secrets.PUSH_PLUS_TOKEN }}
+          PUSH_PLUS_USER: ${{ github.event.client_payload.PUSH_PLUS_USER || secrets.PUSH_PLUS_USER }}
 
