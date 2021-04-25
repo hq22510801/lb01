@@ -7,7 +7,7 @@ const JD_API_HOST = 'https://m.jingxi.com';
 const fs = require('fs');
 const notify = $.isNode() ? require('./sendNotify') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
-const tuanActiveId = `0_pzMedR7KhclCkMIgkTkg==`;
+const tuanActiveId = `mNGPTrOPluOSeZcupPI40w==`;
 let cookiesArr = [], cookie = '', message = '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 Object.keys(jdCookieNode).forEach((item) => {
@@ -23,7 +23,7 @@ if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () =
   $.tuanIds = [];
   // await readFile();
   // for (let i = 0; i < cookiesArr.length; i++) {
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])

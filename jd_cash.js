@@ -27,7 +27,7 @@ let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭�
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let helpAuthor = false;
-const randomCount = 1;
+const randomCount = 5;
 const inviteCodes = [
   `fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`,`fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`,`fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`,`fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`,`fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`,`fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`,`fUJyNrXnYPsu@ZE9wEZbhE4tGijmolzI@ZE9oKpb0AZxaqQuwigA@ZE9hJKjuEoFOiTyEszY`
 ]
@@ -218,9 +218,9 @@ function doTask(type,taskInfo) {
     })
   })
 }
-function getReward() {
+function getReward(source = 1) {
   return new Promise((resolve) => {
-    $.get(taskUrl("cash_mob_reward",{"source":1,"rewardNode":""}), (err, resp, data) => {
+    $.get(taskUrl("cash_mob_reward",{"source": Number(source),"rewardNode":""}), (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -228,11 +228,12 @@ function getReward() {
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
-            if( data.code === 0 && data.data.bizCode === 0 ){
+            if (data.code === 0 && data.data.bizCode === 0) {
               console.log(`领奖成功，${data.data.result.shareRewardTip}【${data.data.result.shareRewardAmount}】`)
+              message += `领奖成功，${data.data.result.shareRewardTip}【${data.data.result.shareRewardAmount}元】\n`;
               // console.log(data.data.result.taskInfos)
-            }else{
-              console.log(`领奖失败，${data.data.bizMsg}`)
+            } else {
+              // console.log(`领奖失败，${data.data.bizMsg}`)
             }
           }
         }
@@ -258,7 +259,7 @@ function showMsg() {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `https://cod111e.chiang.fun/api/v1/jd/jdcash/read/1/`, 'timeout': 100}, (err, resp, data) => {
+    $.get({url: `https://gitee.com/xr2021/share/raw/master/cash.json`, 'timeout': 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -364,7 +365,7 @@ function taskUrl(functionId, body = {}) {
 
 function getAuthorShareCode() {
   return new Promise(resolve => {
-    $.get({url: "https://gitee.com111/shylocks/updateTeam/raw/main/jd_cash.json",headers:{
+    $.get({url: "https://gitee111.com/xr2021/share/raw/master/cash.json",headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }}, async (err, resp, data) => {
       $.authorCode = [];
