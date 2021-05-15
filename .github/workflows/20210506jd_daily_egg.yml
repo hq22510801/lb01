@@ -1,14 +1,14 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 20210512jd_speed_red急速版红包
+name: 0506jd_daily_egg
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 16 * * *'
+    - cron: '10 22 * * *'
   repository_dispatch:
-    types: jd_speed_red
+    types: jd_daily_egg
 jobs:
   build:
 
@@ -33,9 +33,8 @@ jobs:
           npm install
       - name: '运行'
         run: |
-          node jd_speed_redpocke.js
-          sleep 5m
-          node jd_speed_sign.js
+          node jd_daily_egg.js 
+          
           
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
@@ -53,4 +52,4 @@ jobs:
           IGOT_PUSH_KEY: ${{ secrets.IGOT_PUSH_KEY }}
           PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
           PUSH_PLUS_USER: ${{ secrets.PUSH_PLUS_USER }}
-          QYWX_KEY: ${{ secrets.QYWX_KEY }}        
+

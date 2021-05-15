@@ -6,7 +6,7 @@ name: jd_unsubscribe
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 0,1,2,3,4,5,6,7,8 * * *'
+    - cron: '45 15,18 * * *'
   watch:
         types: started
   repository_dispatch:
@@ -27,8 +27,6 @@ jobs:
           npm install
       - name: '运行 【京东取关商品】'
         run: |
-          node jd_unsubscribe.js
-          node jd_unsubscribe.js
           node jd_unsubscribe.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
